@@ -1,0 +1,340 @@
+{
+  "intents": [
+    {
+      "intent": "ترحيب",
+      "examples": [
+        {
+          "text": "السام عليكم"
+        },
+        {
+          "text": "اهلا"
+        },
+        {
+          "text": "اهلا فيك"
+        },
+        {
+          "text": "مرحبا"
+        },
+        {
+          "text": "هلو"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "حجز",
+      "examples": [
+        {
+          "text": "اريد حجز"
+        },
+        {
+          "text": "اريد حجز موعد"
+        },
+        {
+          "text": "اريد موعد لتجربة تحريك الذراع ؟"
+        },
+        {
+          "text": "هل استطيع اخذ موعد لتجربة ؟"
+        },
+        {
+          "text": "هل يوجد موعد متاح لتجربة تحريك الذراع عن بعد؟"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "خدمات",
+      "examples": [
+        {
+          "text": "كيف اقوم بتحريك الذراع ؟"
+        },
+        {
+          "text": "ماهي الخدمات التي يقدمها هاذا الموقع"
+        }
+      ],
+      "description": ""
+    }
+  ],
+  "entities": [
+    {
+      "entity": "sys-date",
+      "values": [],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "sys-number",
+      "values": [],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "sys-time",
+      "values": [],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "عددالاشخاص",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "نص",
+          "synonyms": []
+        }
+      ],
+      "fuzzy_match": true
+    }
+  ],
+  "metadata": {
+    "api_version": {
+      "major_version": "v2",
+      "minor_version": "2018-11-08"
+    }
+  },
+  "dialog_nodes": [
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_5_1626442417790",
+      "context": {
+        "date": "@sys-date"
+      },
+      "conditions": "@sys-date",
+      "event_name": "input",
+      "dialog_node": "handler_1_1626442417817"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_5_1626442551066",
+      "context": {
+        "number": "@sys-number"
+      },
+      "conditions": "@sys-number",
+      "event_name": "input",
+      "dialog_node": "handler_4_1626442551068"
+    },
+    {
+      "type": "event_handler",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "ماعدد الاشخاص المهتمين؟"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "slot_5_1626442551066",
+      "event_name": "focus",
+      "dialog_node": "handler_5_1626442551068",
+      "previous_sibling": "handler_4_1626442551068"
+    },
+    {
+      "type": "event_handler",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "ما الوقت المناسب؟"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "slot_9_1626442573694",
+      "event_name": "focus",
+      "dialog_node": "handler_6_1626442573696",
+      "previous_sibling": "handler_9_1626442573696"
+    },
+    {
+      "type": "event_handler",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "ما التاريخ المناسب؟"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "slot_5_1626442417790",
+      "event_name": "focus",
+      "dialog_node": "handler_8_1626442417817",
+      "previous_sibling": "handler_1_1626442417817"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_9_1626442573694",
+      "context": {
+        "time": "@sys-time"
+      },
+      "conditions": "@sys-time",
+      "event_name": "input",
+      "dialog_node": "handler_9_1626442573696"
+    },
+    {
+      "type": "frame",
+      "title": "حجز",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "تم حجز الموعد شكرا لك "
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "#حجز",
+      "dialog_node": "node_4_1626441904876",
+      "previous_sibling": "node_9_1626441390511"
+    },
+    {
+      "type": "standard",
+      "title": "ترحيب",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "ياهلا"
+              },
+              {
+                "text": "مرحبا"
+              },
+              {
+                "text": "السلام عليكم "
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "random"
+          }
+        ]
+      },
+      "conditions": "#ترحيب",
+      "dialog_node": "node_5_1626440656158",
+      "previous_sibling": "مرحبا"
+    },
+    {
+      "type": "standard",
+      "title": "خدمات",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "نعم , تستطيع تحريك الذراع من خلال ايقونات تحريك الذراع الظاهرة لديك"
+              },
+              {
+                "text": "نعم . يقوم موقعنا بتحريك الذراع الالي عن بعد "
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "#خدمات",
+      "dialog_node": "node_9_1626441390511",
+      "previous_sibling": "node_5_1626440656158"
+    },
+    {
+      "type": "slot",
+      "parent": "node_4_1626441904876",
+      "variable": "$date",
+      "dialog_node": "slot_5_1626442417790"
+    },
+    {
+      "type": "slot",
+      "parent": "node_4_1626441904876",
+      "variable": "$number",
+      "dialog_node": "slot_5_1626442551066",
+      "previous_sibling": "slot_5_1626442417790"
+    },
+    {
+      "type": "slot",
+      "parent": "node_4_1626441904876",
+      "variable": "$time",
+      "dialog_node": "slot_9_1626442573694",
+      "previous_sibling": "slot_5_1626442551066"
+    },
+    {
+      "type": "standard",
+      "title": "أي شيء آخر",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "لم أفهم، يمكنك محاولة اعادة الصياغة"
+              },
+              {
+                "text": "هل يمكنك اعادة صياغة عبارتك؟ أنا لا فهم"
+              },
+              {
+                "text": "لم أفهم قصدك"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "anything_else",
+      "dialog_node": "أي شيء آخر",
+      "previous_sibling": "node_4_1626441904876",
+      "disambiguation_opt_out": true
+    },
+    {
+      "type": "standard",
+      "title": "اهلا فيك ",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "معاك لينو كيف اقدر اخدمك؟"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "welcome",
+      "dialog_node": "مرحبا"
+    }
+  ],
+  "counterexamples": [],
+  "system_settings": {
+    "disambiguation": {
+      "prompt": ":هل قصدت",
+      "enabled": true,
+      "randomize": true,
+      "max_suggestions": 5,
+      "suggestion_text_policy": "title",
+      "none_of_the_above_prompt": "كل ما سبق خطأ"
+    },
+    "human_agent_assist": {
+      "prompt": ":هل قصدت"
+    }
+  },
+  "learning_opt_out": false,
+  "name": "تحدث",
+  "language": "ar",
+  "description": "تحدث مع لينو في ما تحتاج فهمه"
+}
